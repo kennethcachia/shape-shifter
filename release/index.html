@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <title>Shape Shifter</title>
+    <link rel="stylesheet" href="site.min.css">
+  </head>
+  <body>
+    <canvas class="canvas"></canvas>
+
+    <div class="help">?</div> 
+
+    <div class="ui">
+      <input class="ui-input" type="text" />
+      <span class="ui-return">↵</span>
+    </div>
+
+    <div class="overlay">
+      <span class="twitter-share">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-dnt="true" data-count="none">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </span>
+
+      <div class="tabs">
+        <div class="tabs-labels"><span class="tabs-label">Commands</span><span class="tabs-label">Info</span><span class="tabs-label">Share</span></div>
+
+        <div class="tabs-panels">
+          <ul class="tabs-panel commands">
+            <li class="commands-item"><span class="commands-item-title">Text</span><span class="commands-item-info" data-demo="Hello :)">Type anything</span><span class="commands-item-action">Demo</span></li>
+            <li class="commands-item"><span class="commands-item-title">Countdown</span><span class="commands-item-info" data-demo="#countdown 10">#countdown<span class="commands-item-mode">number</span></span><span class="commands-item-action">Demo</span></li>
+            <li class="commands-item"><span class="commands-item-title">Icon</span><span class="commands-item-info" data-demo="#icon thumbs-up">#icon<span class="commands-item-mode">name</span>&nbsp;(using <a href="//fortawesome.github.io/Font-Awesome/#icons-new" target="_blank">Font Awesome</a>)</span><span class="commands-item-action">Demo</span></li>
+            <li class="commands-item"><span class="commands-item-title">Time</span><span class="commands-item-info" data-demo="#time">#time</span><span class="commands-item-action">Demo</span></li>
+            <li class="commands-item"><span class="commands-item-title">Rectangle</span><span class="commands-item-info" data-demo="#rectangle 30x15">#rectangle<span class="commands-item-mode">width x height</span></span><span class="commands-item-action">Demo</span></li>
+            <li class="commands-item"><span class="commands-item-title">Circle</span><span class="commands-item-info" data-demo="#circle 25">#circle<span class="commands-item-mode">diameter</span></span><span class="commands-item-action">Demo</span></li>
+
+            <li class="commands-item commands-item--gap"><span class="commands-item-title">Animate</span><span class="commands-item-info" data-demo="The time is|#time|#countdown 3|#icon thumbs-up"><span class="commands-item-mode">command1</span>&nbsp;|<span class="commands-item-mode">command2</span></span><span class="commands-item-action">Demo</span></li>
+          </ul>
+
+          <div class="tabs-panel ui-details">
+            <div class="ui-details-content">
+              <h1>Shape Shifter</h1>
+              <p>
+                An experiment by <a href="//www.kennethcachia.com" target="_blank">Kenneth Cachia<a/>.<br/>
+                <a href="//fortawesome.github.io/Font-Awesome/#icons-new" target="_blank">Font Awesome</a> is being used to render all #icons.
+              </p>
+            </div>
+          </div>
+
+          <div class="tabs-panel ui-share">
+            <div class="ui-share-content">
+              <h1>Sharing</h1>
+              <p>Simply add <em>?a=</em> to the current URL to share any static or animated text. Examples:</p>
+              <p>
+                <a href="?a=Hello">www.kennethcachia.com/shape-shifter?a=Hello</a><br/>
+                <a href="?a=Hello|#countdown 3">www.kennethcachia.com/shape-shifter?a=Hello|#countdown 3</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="shape-shifter.js"></script>
+  </body>
+</html>
