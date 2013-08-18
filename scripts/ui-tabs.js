@@ -1,7 +1,6 @@
 
 S.UI.Tabs = (function () {
-  var tabs = document.querySelector('.tabs'),
-      labels = document.querySelector('.tabs-labels'),
+  var labels = document.querySelector('.tabs-labels'),
       triggers = document.querySelectorAll('.tabs-label'),
       panels = document.querySelectorAll('.tabs-panel');
 

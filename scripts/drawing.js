@@ -1,7 +1,5 @@
 
 S.Drawing = (function () {
-  'use strict';
-
   var canvas,
       context,
       renderFn,
@@ -10,9 +8,9 @@ S.Drawing = (function () {
                      window.mozRequestAnimationFrame    ||
                      window.oRequestAnimationFrame      ||
                      window.msRequestAnimationFrame     ||
-                     function(callback) {
-                       window.setTimeout(callback, 1000 / 60);
-                     };
+                     function (callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                      };
 
   return {
     init: function (el) {
@@ -20,7 +18,7 @@ S.Drawing = (function () {
       context = canvas.getContext('2d');
       this.adjustCanvas();
 
-      window.addEventListener('resize', function (e) {
+      window.addEventListener('resize', function () {
         S.Drawing.adjustCanvas();
       });
     },

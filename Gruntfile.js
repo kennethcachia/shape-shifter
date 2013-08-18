@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['scripts/*.js'],
-        tasks: ['clean:scripts', 'jshint', 'concat']
+        tasks: ['clean:scripts', 'concat', 'jshint']
       },
       css: {
         files: ['styles/*.css'],
@@ -51,7 +51,23 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      files: ['Gruntfile.js', 'scripts/*.js']
+      files: ['release/*.js'],
+      options: {
+        'globalstrict': true,
+        'strict': true,
+        'white': true,
+        'indent': 2,
+        'curly': true,
+        'eqnull': true,
+        'latedef': true,
+        'newcap': true,
+        'noarg': true,
+        'eqeqeq': true,
+        'immed': true,
+        'undef': true,
+        'unused': true,
+        'browser': true
+      }
     }
 
   });
@@ -63,6 +79,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   grunt.registerTask('default', ['watch']);
-  grunt.registerTask('release', ['clean', 'cssmin', 'jshint', 'concat']);
+  grunt.registerTask('release', ['clean', 'cssmin', 'concat', 'jshint']);
 
 };

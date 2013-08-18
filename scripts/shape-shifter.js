@@ -4,6 +4,8 @@
  * A canvas experiment
  */
 
+'use strict';
+
 var S = {
   init: function () {
     var action = window.location.href,

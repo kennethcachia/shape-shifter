@@ -4,6 +4,8 @@
  * A canvas experiment
  */
 
+'use strict';
+
 var S = {
   init: function () {
     var action = window.location.href,
@@ -33,8 +35,6 @@ window.addEventListener('load', function () {
 
 
 S.Drawing = (function () {
-  'use strict';
-
   var canvas,
       context,
       renderFn,
@@ -43,9 +43,9 @@ S.Drawing = (function () {
                      window.mozRequestAnimationFrame    ||
                      window.oRequestAnimationFrame      ||
                      window.msRequestAnimationFrame     ||
-                     function(callback) {
-                       window.setTimeout(callback, 1000 / 60);
-                     };
+                     function (callback) {
+                        window.setTimeout(callback, 1000 / 60);
+                      };
 
   return {
     init: function (el) {
@@ -53,7 +53,7 @@ S.Drawing = (function () {
       context = canvas.getContext('2d');
       this.adjustCanvas();
 
-      window.addEventListener('resize', function (e) {
+      window.addEventListener('resize', function () {
         S.Drawing.adjustCanvas();
       });
     },
@@ -182,71 +182,71 @@ S.UI = (function () {
     input.value = '';
     checkInputWidth();
 
-    timedAction(function (index) {
+    timedAction(function () {
       current = sequence.shift();
       action = getAction(current);
       value = getValue(current);
 
       switch (action) {
-        case 'countdown':
-          value = parseInt(value, 10) || 10;
-          value = value > 0 ? value : 10;
+      case 'countdown':
+        value = parseInt(value, 10) || 10;
+        value = value > 0 ? value : 10;
 
-          timedAction(function (index) {
-            if (index === 0) {
-              if (sequence.length === 0) {
-                S.Shape.switchShape(S.ShapeBuilder.letter(''));
-              } else {
-                performAction(sequence);
-              }
+        timedAction(function (index) {
+          if (index === 0) {
+            if (sequence.length === 0) {
+              S.Shape.switchShape(S.ShapeBuilder.letter(''));
             } else {
-              S.Shape.switchShape(S.ShapeBuilder.letter(index), true);
+              performAction(sequence);
             }
-          }, 1000, value, true);
-          break;
-
-        case 'rectangle':
-          value = value && value.split('x');
-          value = (value && value.length === 2) ? value : [maxShapeSize, maxShapeSize / 2];
-
-          S.Shape.switchShape(S.ShapeBuilder.rectangle(Math.min(maxShapeSize, parseInt(value[0], 10)), Math.min(maxShapeSize, parseInt(value[1], 10))));
-          break;
-
-        case 'circle':
-          value = parseInt(value, 10) || maxShapeSize;
-          value = Math.min(value, maxShapeSize);
-          S.Shape.switchShape(S.ShapeBuilder.circle(value));
-          break;
-
-        case 'time':
-          var t = formatTime(new Date());
-
-          if (sequence.length > 0) {
-            S.Shape.switchShape(S.ShapeBuilder.letter(t));
           } else {
-            timedAction(function () {
-              t = formatTime(new Date());
-              if (t !== time) {
-                time = t;
-                S.Shape.switchShape(S.ShapeBuilder.letter(time));
-              }
-            }, 1000);
+            S.Shape.switchShape(S.ShapeBuilder.letter(index), true);
           }
-          break;
+        }, 1000, value, true);
+        break;
 
-        case 'icon':
-          S.ShapeBuilder.imageFile('font-awesome/' + value + '.png', function (obj) {
-            S.Shape.switchShape(obj);
-          });
-          break;
+      case 'rectangle':
+        value = value && value.split('x');
+        value = (value && value.length === 2) ? value : [maxShapeSize, maxShapeSize / 2];
 
-        default:
-          S.Shape.switchShape(S.ShapeBuilder.letter(current[0] === cmd ? 'What?' : current));
+        S.Shape.switchShape(S.ShapeBuilder.rectangle(Math.min(maxShapeSize, parseInt(value[0], 10)), Math.min(maxShapeSize, parseInt(value[1], 10))));
+        break;
+
+      case 'circle':
+        value = parseInt(value, 10) || maxShapeSize;
+        value = Math.min(value, maxShapeSize);
+        S.Shape.switchShape(S.ShapeBuilder.circle(value));
+        break;
+
+      case 'time':
+        var t = formatTime(new Date());
+
+        if (sequence.length > 0) {
+          S.Shape.switchShape(S.ShapeBuilder.letter(t));
+        } else {
+          timedAction(function () {
+            t = formatTime(new Date());
+            if (t !== time) {
+              time = t;
+              S.Shape.switchShape(S.ShapeBuilder.letter(time));
+            }
+          }, 1000);
+        }
+        break;
+
+      case 'icon':
+        S.ShapeBuilder.imageFile('font-awesome/' + value + '.png', function (obj) {
+          S.Shape.switchShape(obj);
+        });
+        break;
+
+      default:
+        S.Shape.switchShape(S.ShapeBuilder.letter(current[0] === cmd ? 'What?' : current));
       }
     }, 2000, sequence.length);
   }
 
-  function checkInputWidth(e) {
+  function checkInputWidth() {
     if (input.value.length > 18) {
       ui.classList.add('ui--wide');
     } else {
@@ -283,7 +283,7 @@ S.UI = (function () {
     input.addEventListener('change', checkInputWidth);
     input.addEventListener('focus', checkInputWidth);
 
-    help.addEventListener('click', function (e) {
+    help.addEventListener('click', function () {
       overlay.classList.toggle('overlay--visible');
 
       if (overlay.classList.contains('overlay--visible')) {
@@ -295,8 +295,6 @@ S.UI = (function () {
       var el,
           info,
           demo,
-          tab,
-          active,
           url;
 
       if (e.target.classList.contains('commands-item')) {
@@ -327,7 +325,7 @@ S.UI = (function () {
       }
     });
 
-    canvas.addEventListener('click', function (e) {
+    canvas.addEventListener('click', function () {
       overlay.classList.remove('overlay--visible');
     });
   }
@@ -352,8 +350,7 @@ S.UI = (function () {
 
 
 S.UI.Tabs = (function () {
-  var tabs = document.querySelector('.tabs'),
-      labels = document.querySelector('.tabs-labels'),
+  var labels = document.querySelector('.tabs-labels'),
       triggers = document.querySelectorAll('.tabs-label'),
       panels = document.querySelectorAll('.tabs-panel');
 
