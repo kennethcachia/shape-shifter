@@ -6,4 +6,4 @@ A canvas experiment. Check out the [Demo](http://www.kennethcachia.com/shape-shi
 
 #IMPORTANT
 
-The app currently doesn't let you type.
+On touchscreens, the app currently doesn't let you type.
